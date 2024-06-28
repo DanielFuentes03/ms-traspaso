@@ -1,5 +1,0 @@
-
-o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ò—Éû
-u	java:S116"[Rename this field "apellido_paterno" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(»œ´²øÿÿÿÿ
-p	java:S116"[Rename this field "apellido_materno" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¸µó
-l	java:S116"XRename this field "numero_cuenta" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(®“ŠT

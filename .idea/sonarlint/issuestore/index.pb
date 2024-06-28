@@ -1,15 +1,11 @@
 
-u
-Esrc/main/java/com/api_management_3scale/imagen/ImagenApplication.java,8\8\88959503f319326496567e1986d354d4e8608d16
-p
-@src/main/java/com/api_management_3scale/imagen/model/Imagen.java,9\a\9ad27ad173a1c03dc592d49c0573a5d13b4199c5
-
-Osrc/main/java/com/api_management_3scale/imagen/controller/ImagenController.java,f\a\fac58326abcbd608a7c5480bddef99b974dff5d6
+‚
+Rsrc/main/java/com/api/management/scale/traspaso/controller/TraspasoController.java,c\6\c6a60fd4ffc3061947a39fd6e15fc9e8cc72895a
 ƒ
-Ssrc/main/java/com/api_management_3scale/Traspaso/repository/TraspasoRepository.java,a\e\ae3b522d515758363bd1b67543f5bea973f64f52
-t
-Dsrc/main/java/com/api_management_3scale/Traspaso/model/Traspaso.java,b\3\b3c9939112904e08cad126366963a0fdc32d7e51
-ƒ
-Ssrc/main/java/com/api_management_3scale/Traspaso/controller/TraspasoController.java,8\d\8d46bfe1e1a449f2c06dccd84fb96525b0fc2de7
-}
-Msrc/main/java/com/api_management_3scale/Traspaso/service/TraspasoService.java,4\c\4cbdd669538659f89b858fe029420e8ba006f55c
+Ssrc/main/java/com/api/management/scale/traspaso/ApiManagement3scaleApplication.java,0\9\093104503874f7de9908d73cab48d73e853f50a1
+7
+pom.xml,4\4\442292b8a7efeabbe4cc176709b833b1792140ec
+s
+Csrc/main/java/com/api/management/scale/traspaso/model/Traspaso.java,8\f\8f4c0cf7e0fa0e95cd4ab344ecb86f0d63a60791
+|
+Lsrc/main/java/com/api/management/scale/traspaso/service/TraspasoService.java,9\7\9731e70c6cb61318a9178255ee468eaa21d3a6e9
