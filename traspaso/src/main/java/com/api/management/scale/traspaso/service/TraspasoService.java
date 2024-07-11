@@ -6,17 +6,22 @@ import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
 public class TraspasoService {
 
+    private  final TraspasoRepository traspRepo;
+
     @Autowired
-    private TraspasoRepository traspRepo;
+    public TraspasoService(TraspasoRepository traspRepo){
+        this.traspRepo =traspRepo;
+    }
 
     public List<Traspaso> listAll(){return traspRepo.findAll();}
 
-    public Traspaso get(Long id){ return traspRepo.findById(id).get();}
+    public Optional<Traspaso> getOptional(Long id){ return traspRepo.findById(id);}
 
     public Traspaso save(Traspaso traspaso){return traspRepo.save(traspaso);}
 

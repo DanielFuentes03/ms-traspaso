@@ -9,7 +9,6 @@ import lombok.Data;
 @Table(name = "traspaso")
 public class Traspaso {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     @JsonProperty("id")
     @Column(name = "id")
     private long id;

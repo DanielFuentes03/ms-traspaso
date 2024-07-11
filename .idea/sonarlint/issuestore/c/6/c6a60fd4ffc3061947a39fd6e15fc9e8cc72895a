@@ -1,9 +1,0 @@
-
-t
-java:S2293+"YReplace the type specification in this constructor call with the diamond operator ("<>").(³Û®àýÿÿÿÿ
-X
-java:S6813"BRemove this field injection and use constructor injection instead.(êæÄÞ
-M
-java:S6863?"2Set a HttpStatus code reflective of the operation.(·¥ùÂÿÿÿÿÿ
-?
-java:S21400")Use "java.util.Random.nextInt()" instead.( ¥ùŠ

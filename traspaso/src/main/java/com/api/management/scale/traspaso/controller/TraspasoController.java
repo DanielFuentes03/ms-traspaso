@@ -9,13 +9,21 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Optional;
+import java.util.Random;
 
 @RestController
 @RequestMapping("v1/traspaso")
 public class TraspasoController {
 
-    @Autowired
     private TraspasoService traspServ;
+
+    @Autowired
+    public TraspasoController(TraspasoService traspServ){
+        this.traspServ = traspServ;
+    }
+
+    Random aleatorio = new Random();
 
     @GetMapping()
     public ResponseEntity<List<Traspaso>> listaTraspasos() {
@@ -29,23 +37,22 @@ public class TraspasoController {
 
     @GetMapping("/{id}")
     public ResponseEntity<Traspaso> buscarporid (@PathVariable(name = "id") Long id){
-        Traspaso traspasoencontrado = traspServ.get(id);
-        if(traspasoencontrado == null){
+           Optional<Traspaso> traspasoencontrado = traspServ.getOptional(id);
+           if(traspasoencontrado.isPresent()){
+               traspasoencontrado.get().setEstatus(calculaEstatus());
+               return new ResponseEntity<>(traspasoencontrado.get(),HttpStatus.OK);
+           }
             return ResponseEntity.noContent().build();
-        }else{
-            traspasoencontrado.setEstatus(calculaEstatus());
-            return new ResponseEntity<>(traspasoencontrado,HttpStatus.OK);
-        }
     }
 
     //calculaEstatus()
     public String calculaEstatus(){
-        HashMap<Integer, String> estatus = new HashMap<Integer, String>();
-        estatus.put(1,"RECIBIDA");
-        estatus.put(2,"PROCESADA");
-        estatus.put(3,"ENVIADA A BRANCH OFFICE");
-        estatus.put(4,"RECHAZADA");
-        int numeroAleatorio = (int)(Math.random() * 4)+1;
+        HashMap<Integer, String> estatus = new HashMap<>();
+        estatus.put(0,"RECIBIDA");
+        estatus.put(1,"PROCESADA");
+        estatus.put(2,"ENVIADA A BRANCH OFFICE");
+        estatus.put(3,"RECHAZADA");
+        int numeroAleatorio = aleatorio.nextInt(4);
         return estatus.get(numeroAleatorio);
     }
 
@@ -56,32 +63,28 @@ public class TraspasoController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Traspaso> borrarTraspaso(@PathVariable Long id){
-        Traspaso traspasoEncontrado;
-        try {
-            traspasoEncontrado = traspServ.get(id);
-        }catch(Exception e){
-            return ResponseEntity.noContent().build();
-        }
-        traspServ.delete(traspasoEncontrado.getId());
-        return new ResponseEntity<>(HttpStatus.OK);
-
-    }
-
-    @PutMapping("/{id}")
-    public ResponseEntity<Traspaso> actualizarTraspaso(@PathVariable(name = "id")Long id , @RequestBody Traspaso input){
-        Traspaso traspasoencontrado = traspServ.get(id);
-        if(traspasoencontrado != null){
-            traspasoencontrado.setId(input.getId());
-            traspasoencontrado.setNombre(input.getNombre());
-            traspasoencontrado.setApellidoPaterno(input.getApellidoPaterno());
-            traspasoencontrado.setApellidoMaterno(input.getApellidoMaterno());
-            traspasoencontrado.setNumeroCuenta(input.getNumeroCuenta());
-            traspasoencontrado.setNss(input.getNss());
-            return new ResponseEntity<>(traspServ.save(traspasoencontrado),HttpStatus.OK);
+        Optional<Traspaso> traspasoEncontrado = traspServ.getOptional(id);
+        if(traspasoEncontrado.isPresent()){
+            traspServ.delete(traspasoEncontrado.get().getId());
+            return new ResponseEntity<>(HttpStatus.OK);
         }else{
             return ResponseEntity.noContent().build();
         }
     }
 
-
+    @PutMapping("/{id}")
+    public ResponseEntity<Traspaso> actualizarTraspaso(@PathVariable(name = "id")Long id , @RequestBody Traspaso input){
+        Optional<Traspaso> traspasoEncontrado = traspServ.getOptional(id);
+        if(traspasoEncontrado.isPresent()){
+            traspasoEncontrado.get().setId(input.getId());
+            traspasoEncontrado.get().setNombre(input.getNombre());
+            traspasoEncontrado.get().setApellidoPaterno(input.getApellidoPaterno());
+            traspasoEncontrado.get().setApellidoMaterno(input.getApellidoMaterno());
+            traspasoEncontrado.get().setNumeroCuenta(input.getNumeroCuenta());
+            traspasoEncontrado.get().setNss(input.getNss());
+            return new ResponseEntity<>(traspServ.save(traspasoEncontrado.get()),HttpStatus.OK);
+        }else{
+            return ResponseEntity.noContent().build();
+        }
+    }
 }
