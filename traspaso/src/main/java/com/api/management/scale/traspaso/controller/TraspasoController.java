@@ -1,7 +1,7 @@
 package com.api.management.scale.traspaso.controller;
 
 import com.api.management.scale.traspaso.model.Traspaso;
-import com.api.management.scale.traspaso.service.TraspasoService;
+import com.api.management.scale.traspaso.service.TraspasoServiceImpl;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,10 +16,10 @@ import java.util.Random;
 @RequestMapping("v1/traspaso")
 public class TraspasoController {
 
-    private TraspasoService traspServ;
+    private TraspasoServiceImpl traspServ;
 
     @Autowired
-    public TraspasoController(TraspasoService traspServ){
+    public TraspasoController(TraspasoServiceImpl traspServ){
         this.traspServ = traspServ;
     }
 
