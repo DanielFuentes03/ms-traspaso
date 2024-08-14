@@ -9,5 +9,4 @@ class ApiManagement3scaleApplicationTests {
 	@Test
 	void contextLoads() {
 	}
-
 }

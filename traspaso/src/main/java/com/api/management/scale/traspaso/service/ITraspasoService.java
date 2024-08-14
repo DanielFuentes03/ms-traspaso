@@ -1,8 +1,8 @@
 package com.api.management.scale.traspaso.service;
 
+import com.api.management.scale.traspaso.dto.TraspasoDto;
 import com.api.management.scale.traspaso.model.Traspaso;
-import com.api.management.scale.traspaso.repository.TraspasoRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 import java.util.Optional;
@@ -10,7 +10,7 @@ import java.util.Optional;
 public interface ITraspasoService {
 
 
-    public List<Traspaso> listAll();
+    public List<TraspasoDto> listAll();
 
     public Optional<Traspaso> getOptional(Long id);
 

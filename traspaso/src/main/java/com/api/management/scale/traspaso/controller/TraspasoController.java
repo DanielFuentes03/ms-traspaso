@@ -1,8 +1,12 @@
 package com.api.management.scale.traspaso.controller;
 
+import com.api.management.scale.traspaso.dto.TraspasoDto;
 import com.api.management.scale.traspaso.model.Traspaso;
-import com.api.management.scale.traspaso.service.TraspasoServiceImpl;
+import com.api.management.scale.traspaso.service.ITraspasoService;
+import com.api.management.scale.traspaso.service.impl.TraspasoServiceImpl;
 import jakarta.validation.Valid;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,24 +18,22 @@ import java.util.Random;
 
 @RestController
 @RequestMapping("v1/traspaso")
+@AllArgsConstructor
+@NoArgsConstructor
 public class TraspasoController {
 
-    private TraspasoServiceImpl traspServ;
-
     @Autowired
-    public TraspasoController(TraspasoServiceImpl traspServ){
-        this.traspServ = traspServ;
-    }
+    private ITraspasoService traspServ;
 
     Random aleatorio = new Random();
 
     @GetMapping()
-    public ResponseEntity<List<Traspaso>> listaTraspasos() {
-        List<Traspaso> traspasos = traspServ.listAll();
-        if (traspasos.isEmpty()) {
+    public ResponseEntity<List<TraspasoDto>> listaTraspasos() {
+        List<TraspasoDto> traspasos = traspServ.listAll();
+        if(traspasos.isEmpty()){
             return ResponseEntity.noContent().build();
-        } else {
-            return new ResponseEntity<>(traspasos, HttpStatus.OK);
+        }else{
+            return new ResponseEntity<>(traspasos,HttpStatus.OK);
         }
     }
 
