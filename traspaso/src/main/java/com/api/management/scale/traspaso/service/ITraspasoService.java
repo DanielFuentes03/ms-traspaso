@@ -12,10 +12,12 @@ public interface ITraspasoService {
 
     public List<TraspasoDto> listAll();
 
-    public Optional<Traspaso> getOptional(Long id);
+    public TraspasoDto getById(Long id);
 
-    public Traspaso save(Traspaso traspaso);
+    public Traspaso save(TraspasoDto traspasoDto);
 
-    public void delete(Long id);
+    public String delete(Long id);
+
+    public Traspaso update(Long id,TraspasoDto traspasoDto);
 
 }

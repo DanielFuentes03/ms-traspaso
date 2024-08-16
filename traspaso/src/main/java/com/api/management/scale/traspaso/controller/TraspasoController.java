@@ -38,11 +38,11 @@ public class TraspasoController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Traspaso> buscarporid (@PathVariable(name = "id") Long id){
-           Optional<Traspaso> traspasoencontrado = traspServ.getOptional(id);
-           if(traspasoencontrado.isPresent()){
-               traspasoencontrado.get().setEstatus(calculaEstatus());
-               return new ResponseEntity<>(traspasoencontrado.get(),HttpStatus.OK);
+    public ResponseEntity<TraspasoDto> buscarporid (@PathVariable(name = "id") Long id){
+           TraspasoDto traspasoencontrado = traspServ.getById(id);
+           if(traspasoencontrado != null){
+               traspasoencontrado.setEstatus(calculaEstatus());
+               return new ResponseEntity<>(traspasoencontrado,HttpStatus.OK);
            }
             return ResponseEntity.noContent().build();
     }
@@ -59,34 +59,26 @@ public class TraspasoController {
     }
 
     @PostMapping()
-    public ResponseEntity<Traspaso> nuevoTraspaso(@Valid @RequestBody Traspaso t){
-        return new ResponseEntity<>(traspServ.save(t),HttpStatus.CREATED);
+    public ResponseEntity<Traspaso> nuevoTraspaso(@Valid @RequestBody TraspasoDto traspasoDto){
+        return new ResponseEntity<>(traspServ.save(traspasoDto),HttpStatus.CREATED);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Traspaso> borrarTraspaso(@PathVariable Long id){
-        Optional<Traspaso> traspasoEncontrado = traspServ.getOptional(id);
-        if(traspasoEncontrado.isPresent()){
-            traspServ.delete(traspasoEncontrado.get().getId());
-            return new ResponseEntity<>(HttpStatus.OK);
-        }else{
+        String respuesta = traspServ.delete(id);
+        if(respuesta == null){
             return ResponseEntity.noContent().build();
         }
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Traspaso> actualizarTraspaso(@PathVariable(name = "id")Long id , @RequestBody Traspaso input){
-        Optional<Traspaso> traspasoEncontrado = traspServ.getOptional(id);
-        if(traspasoEncontrado.isPresent()){
-            traspasoEncontrado.get().setId(input.getId());
-            traspasoEncontrado.get().setNombre(input.getNombre());
-            traspasoEncontrado.get().setApellidoPaterno(input.getApellidoPaterno());
-            traspasoEncontrado.get().setApellidoMaterno(input.getApellidoMaterno());
-            traspasoEncontrado.get().setNumeroCuenta(input.getNumeroCuenta());
-            traspasoEncontrado.get().setNss(input.getNss());
-            return new ResponseEntity<>(traspServ.save(traspasoEncontrado.get()),HttpStatus.OK);
-        }else{
-            return ResponseEntity.noContent().build();
-        }
+    public ResponseEntity<Traspaso> actualizarTraspaso(@PathVariable(name = "id")Long id , @RequestBody TraspasoDto input){
+         Traspaso traspaso = traspServ.update(id,input);
+         if(traspaso == null){
+             return ResponseEntity.noContent().build();
+         }else{
+             return new ResponseEntity<>(traspaso,HttpStatus.OK);
+         }
     }
 }
