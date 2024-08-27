@@ -8,13 +8,15 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="imagen" />
-        <module name="Traspaso" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="api-management-3scale" target="17" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="Traspaso" options="-parameters" />
+      <module name="api-management-3scale" options="-parameters" />
       <module name="imagen" options="-parameters" />
     </option>
   </component>
