@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.example.api-management-3scale</groupId>
-	<artifactId>api-management-3scale</artifactId>
+	<artifactId>Traspaso</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>api-management-3scale</name>
+	<name>Traspaso</name>
 	<description>Apis Dummys para proyecto de Red Hat</description>
 	<properties>
 		<java.version>17</java.version>

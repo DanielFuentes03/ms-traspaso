@@ -1,7 +1,7 @@
-package com.api.management.scale.traspaso.controller;
+package com.api_management_3scale.traspaso.controller;
 
-import com.api.management.scale.traspaso.model.Traspaso;
-import com.api.management.scale.traspaso.service.TraspasoServiceImpl;
+import com.api_management_3scale.traspaso.model.Traspaso;
+import com.api_management_3scale.traspaso.service.TraspasoServiceImpl;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
