@@ -1,9 +1,8 @@
-package com.api.management.scale.traspaso.controller;
+package com.api_management_3scale.traspaso.controller;
 
-import com.api.management.scale.traspaso.dto.TraspasoDto;
-import com.api.management.scale.traspaso.model.Traspaso;
-import com.api.management.scale.traspaso.service.ITraspasoService;
-import com.api.management.scale.traspaso.service.impl.TraspasoServiceImpl;
+import com.api_management_3scale.traspaso.dto.TraspasoDto;
+import com.api_management_3scale.traspaso.model.Traspaso;
+import com.api_management_3scale.traspaso.service.ITraspasoService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
@@ -13,7 +12,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Optional;
 import java.util.Random;
 
 @RestController
@@ -39,12 +37,12 @@ public class TraspasoController {
 
     @GetMapping("/{id}")
     public ResponseEntity<TraspasoDto> buscarporid (@PathVariable(name = "id") Long id){
-           TraspasoDto traspasoencontrado = traspServ.getById(id);
-           if(traspasoencontrado != null){
-               traspasoencontrado.setEstatus(calculaEstatus());
-               return new ResponseEntity<>(traspasoencontrado,HttpStatus.OK);
-           }
-            return ResponseEntity.noContent().build();
+        TraspasoDto traspasoencontrado = traspServ.getById(id);
+        if(traspasoencontrado != null){
+            traspasoencontrado.setEstatus(calculaEstatus());
+            return new ResponseEntity<>(traspasoencontrado,HttpStatus.OK);
+        }
+        return ResponseEntity.noContent().build();
     }
 
     //calculaEstatus()
@@ -74,11 +72,11 @@ public class TraspasoController {
 
     @PutMapping("/{id}")
     public ResponseEntity<Traspaso> actualizarTraspaso(@PathVariable(name = "id")Long id , @RequestBody TraspasoDto input){
-         Traspaso traspaso = traspServ.update(id,input);
-         if(traspaso == null){
-             return ResponseEntity.noContent().build();
-         }else{
-             return new ResponseEntity<>(traspaso,HttpStatus.OK);
-         }
+        Traspaso traspaso = traspServ.update(id,input);
+        if(traspaso == null){
+            return ResponseEntity.noContent().build();
+        }else{
+            return new ResponseEntity<>(traspaso,HttpStatus.OK);
+        }
     }
 }

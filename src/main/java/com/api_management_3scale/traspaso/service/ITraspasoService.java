@@ -1,14 +1,11 @@
-package com.api.management.scale.traspaso.service;
+package com.api_management_3scale.traspaso.service;
 
-import com.api.management.scale.traspaso.dto.TraspasoDto;
-import com.api.management.scale.traspaso.model.Traspaso;
-import org.springframework.http.ResponseEntity;
 
+import com.api_management_3scale.traspaso.dto.TraspasoDto;
+import com.api_management_3scale.traspaso.model.Traspaso;
 import java.util.List;
-import java.util.Optional;
 
 public interface ITraspasoService {
-
 
     public List<TraspasoDto> listAll();
 
@@ -19,5 +16,4 @@ public interface ITraspasoService {
     public String delete(Long id);
 
     public Traspaso update(Long id,TraspasoDto traspasoDto);
-
 }
