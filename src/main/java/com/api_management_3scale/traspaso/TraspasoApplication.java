@@ -1,4 +1,4 @@
-package com.api.management.scale.traspaso;
+package com.api_management_3scale.traspaso;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -1,4 +1,4 @@
-package com.api.management.scale.traspaso.model;
+package com.api_management_3scale.traspaso.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
