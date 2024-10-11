@@ -1,6 +1,8 @@
 package com.api_management_3scale.traspaso.controller;
 
 import com.api_management_3scale.traspaso.dto.TraspasoDto;
+import com.api_management_3scale.traspaso.exception.ResourceNotContentException;
+import com.api_management_3scale.traspaso.exception.ResourceNotFoundException;
 import com.api_management_3scale.traspaso.model.Traspaso;
 import com.api_management_3scale.traspaso.service.ITraspasoService;
 import jakarta.validation.Valid;
@@ -42,7 +44,8 @@ public class TraspasoController {
             traspasoencontrado.setEstatus(calculaEstatus());
             return new ResponseEntity<>(traspasoencontrado,HttpStatus.OK);
         }
-        return ResponseEntity.noContent().build();
+         throw new ResourceNotContentException("ID: "+id+" no encontrado") ;
+       //throw new ResourceNotFoundException("ID: "+id+" no encontrado") ;
     }
 
     //calculaEstatus()
