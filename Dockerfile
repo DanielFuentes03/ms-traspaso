@@ -1,7 +1,22 @@
 FROM openjdk:17
+
 VOLUME /temp
-ENV IMG_PATH=/img
+
+LABEL mentainer="daniel.fuentes@profuturo.com.mx"
+
+ENV TSP_PATH=/traspaso
+
 EXPOSE 7070
-RUN mkdir -p /img
-ADD ./target/Traspaso-0.0.1-SNAPSHOT.jar app.jar
-ENTRYPOINT [ "java","-jar","/app.jar" ]
+
+WORKDIR /app
+
+COPY target/Traspaso-0.0.1-SNAPSHOT.jar /app/Traspaso-0.0.1-SNAPSHOT.jar
+
+ENTRYPOINT ["java","-jar","Traspaso-0.0.1-SNAPSHOT.jar"]
+
+
+
+
+
+
+
